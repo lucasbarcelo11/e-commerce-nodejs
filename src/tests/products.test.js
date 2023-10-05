@@ -41,6 +41,13 @@ test('POST /products', async () => {
     expect(res.body.title).toBe(body.title);
 });
 
+test('PUT /products/:id', async () => {
+    const body = {title: "Iphone2"}
+    const res = await request(app).put(`/products/${id}`).send(body).set('Authorization', `Bearer ${token}`)
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe(body.name);
+});
+
 test('POST /products/:id/images', async () => {
     const image = await Image.create({url: "http://Culauiqercosa.jpg", publicId: "id"})
     const res = await request(app).post(`/products/${id}/images`).send([image.id]).set('Authorization', `Bearer ${token}`)

@@ -36,6 +36,13 @@ test('POST /categories', async () => {
     expect(res.body.id).toBeDefined();
 });
 
+test('PUT /categories/:id', async () => {
+    const body = {name: "Auto2"}
+    const res = await request(app).put(`/categories/${id}`).send(body).set('Authorization', `Bearer ${token}`)
+    expect(res.status).toBe(200);
+    expect(res.body.name).toBe(body.name);
+});
+
 test('DELETE /categories/:id', async () => {
     const res = await request(app)
     .delete(`/categories/${id}`)
